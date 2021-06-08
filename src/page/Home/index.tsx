@@ -1,12 +1,17 @@
-import React from "react";
-import { Text } from "react-native";
+import React from 'react';
+import { StatusBar } from 'react-native';
 
-import { Container } from "./styles";
+import { Container, Header } from './styles';
 
 const Home: React.FC = () => {
   return (
     <Container>
-      <Text>Home</Text>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
+      <Header />
     </Container>
   );
 };
