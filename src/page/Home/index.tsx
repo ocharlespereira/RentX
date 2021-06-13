@@ -7,6 +7,16 @@ import Car from '../../components/Car';
 
 import { Container, Header, HeaderContent, TotalCars } from './styles';
 
+const carData = {
+  brand: 'Audi',
+  name: 'RS 5 Coupé',
+  rent: {
+    period: 'AO DIA',
+    price: 120,
+  },
+  thumbnail: 'https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png',
+};
+
 const Home: React.FC = () => {
   return (
     <Container>
@@ -22,7 +32,7 @@ const Home: React.FC = () => {
           <TotalCars>Total de 12 carros</TotalCars>
         </HeaderContent>
       </Header>
-      <Car />
+      <Car data={carData} />
     </Container>
   );
 };

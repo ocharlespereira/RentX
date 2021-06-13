@@ -14,17 +14,31 @@ import {
   CarImage,
 } from './styles';
 
-const Car: React.FC = () => {
+interface DataProps {
+  brand: string;
+  name: string;
+  rent: {
+    period: string;
+    price: number;
+  };
+  thumbnail: string;
+}
+
+interface CarProps {
+  data: DataProps;
+}
+
+const Car: React.FC<CarProps> = ({ data }) => {
   return (
     <Container>
       <Details>
-        <Brand>AUDI</Brand>
-        <Name>RS 5 Coupé</Name>
+        <Brand>{data.brand}</Brand>
+        <Name>{data.name}</Name>
 
         <About>
           <Rent>
-            <Period>Ao dia</Period>
-            <Price>R$ 120</Price>
+            <Period>{data.rent.period}</Period>
+            <Price>{`RS ${data.rent.price}`}</Price>
           </Rent>
 
           <Type>
@@ -33,7 +47,12 @@ const Car: React.FC = () => {
         </About>
       </Details>
 
-      <CarImage source={{ uri: '' }} />
+      <CarImage
+        source={{
+          uri: data.thumbnail,
+        }}
+        resizeMode="contain"
+      />
     </Container>
   );
 };

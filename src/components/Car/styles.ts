@@ -30,14 +30,33 @@ export const Name = styled.Text`
   font-size: ${RFValue(15)}px;
 `;
 
-export const About = styled.View``;
+export const About = styled.View`
+  flex-direction: row;
+  align-items: center;
 
-export const Rent = styled.View``;
+  margin-bottom: 16px;
+`;
 
-export const Period = styled.Text``;
+export const Rent = styled.View`
+  margin-right: 24px;
+`;
 
-export const Price = styled.Text``;
+export const Period = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.secundary500};
+  color: ${({ theme }) => theme.colors.textDetail};
+  font-size: ${RFValue(10)}px;
+  text-transform: uppercase;
+`;
+
+export const Price = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.secundary500};
+  color: ${({ theme }) => theme.colors.main};
+  font-size: ${RFValue(15)}px;
+`;
 
 export const Type = styled.View``;
 
-export const CarImage = styled.Image``;
+export const CarImage = styled.Image`
+  width: 167px;
+  height: 85px;
+`;
