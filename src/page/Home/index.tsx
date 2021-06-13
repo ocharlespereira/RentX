@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import Logo from '../../assets/logo.svg';
-import Tab from '../Tab';
+import Car from '../../components/Car';
 
 import { Container, Header, HeaderContent, TotalCars } from './styles';
 
@@ -22,7 +22,7 @@ const Home: React.FC = () => {
           <TotalCars>Total de 12 carros</TotalCars>
         </HeaderContent>
       </Header>
-      <Tab />
+      <Car />
     </Container>
   );
 };
