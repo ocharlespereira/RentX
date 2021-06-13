@@ -14,6 +14,7 @@ import {
 
 import Home from './src/page/Home';
 import theme from './src/styles/theme';
+import CarDetails from './src/page/CarDetails';
 
 const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -30,7 +31,7 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Home />
+      <CarDetails />
     </ThemeProvider>
   );
 };
