@@ -33,6 +33,9 @@ const Home: React.FC = () => {
         </HeaderContent>
       </Header>
       <Car data={carData} />
+      <Car data={carData} />
+      <Car data={carData} />
+      <Car data={carData} />
     </Container>
   );
 };
