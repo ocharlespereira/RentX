@@ -1,6 +1,6 @@
+import styled from 'styled-components/native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
-import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
@@ -70,6 +70,18 @@ export const About = styled.Text`
   color: ${({ theme }) => theme.colors.text};
   font-size: ${RFValue(15)}px;
   text-align: justify;
+  line-height: ${RFValue(25)}px;
 
   margin-top: 23px;
+`;
+
+export const Accessories = styled.View`
+  width: 100%;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 16px;
 `;
