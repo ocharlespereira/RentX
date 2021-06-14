@@ -1,8 +1,10 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 
 import BackButton from '../../components/BackButton';
+import Button from '../../components/Button';
+import Calendar from '../../components/Calendar';
 
 import ArrowSvg from '../../assets/arrow.svg';
 
@@ -17,13 +19,10 @@ import {
   Content,
   Footer,
 } from './styles';
-import Button from '../../components/Button';
 
-interface SchedulingProps {
-  children: ReactNode;
-}
+interface SchedulingProps {}
 
-const Scheduling: React.FC<SchedulingProps> = ({ children }) => {
+const Scheduling: React.FC<SchedulingProps> = ({}) => {
   const theme = useTheme();
 
   return (
@@ -46,19 +45,21 @@ const Scheduling: React.FC<SchedulingProps> = ({ children }) => {
         <RentalPeriod>
           <DateInfo>
             <DateTitle>DE</DateTitle>
-            <DateValue selected={false}></DateValue>
+            <DateValue selected={false}>18/06/2021</DateValue>
           </DateInfo>
 
           <ArrowSvg />
 
           <DateInfo>
             <DateTitle>ATÉ</DateTitle>
-            <DateValue selected={false}></DateValue>
+            <DateValue selected={false}>18/06/2021</DateValue>
           </DateInfo>
         </RentalPeriod>
       </Header>
 
-      <Content>{/* Calendario */}</Content>
+      <Content>
+        <Calendar />
+      </Content>
 
       <Footer>
         <Button title="Confirmar" />
