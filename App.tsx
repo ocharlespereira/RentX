@@ -13,7 +13,7 @@ import {
 } from '@expo-google-fonts/archivo';
 
 import theme from './src/styles/theme';
-import SchedulingDetails from './src/pages/SchedulingDetails';
+import SchedulingComplete from './src/pages/SchedulingComplete';
 
 const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -30,7 +30,7 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <SchedulingDetails />
+      <SchedulingComplete />
     </ThemeProvider>
   );
 };
