@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import BackButton from '../../components/BackButton';
 import ImageSlider from '../../components/ImageSlider';
@@ -31,6 +31,12 @@ import {
 } from './styles';
 
 const CarDetails: React.FC = () => {
+  const navigation = useNavigation();
+
+  const handleScheduling = () => {
+    navigation.navigate('Scheduling');
+  };
+
   return (
     <Container>
       <Header>
@@ -71,7 +77,7 @@ const CarDetails: React.FC = () => {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleScheduling} />
       </Footer>
     </Container>
   );

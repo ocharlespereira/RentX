@@ -2,6 +2,7 @@ import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useNavigation } from '@react-navigation/native';
 
 import BackButton from '../../components/BackButton';
 import ImageSlider from '../../components/ImageSlider';
@@ -43,6 +44,11 @@ import {
 
 const SchedulingDetails: React.FC = () => {
   const theme = useTheme();
+  const navigation = useNavigation();
+
+  const handleSchedulingComplete = () => {
+    navigation.navigate('SchedulingComplete');
+  };
 
   return (
     <Container>
@@ -112,7 +118,7 @@ const SchedulingDetails: React.FC = () => {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleSchedulingComplete} />
       </Footer>
     </Container>
   );

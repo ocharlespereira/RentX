@@ -1,6 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
+import { useNavigation } from '@react-navigation/native';
 
 import BackButton from '../../components/BackButton';
 import Button from '../../components/Button';
@@ -24,6 +25,11 @@ interface SchedulingProps {}
 
 const Scheduling: React.FC<SchedulingProps> = ({}) => {
   const theme = useTheme();
+  const navigation = useNavigation();
+
+  const handleSchedulingDetails = () => {
+    navigation.navigate('SchedulingDetails');
+  };
 
   return (
     <Container>
@@ -62,7 +68,7 @@ const Scheduling: React.FC<SchedulingProps> = ({}) => {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleSchedulingDetails} />
       </Footer>
     </Container>
   );

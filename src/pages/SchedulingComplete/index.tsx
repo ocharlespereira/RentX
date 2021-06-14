@@ -1,5 +1,6 @@
 import React from 'react';
 import { useWindowDimensions, StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import ConfirmButton from '../../components/ConfirmButton';
 
@@ -12,6 +13,11 @@ interface SchedulingCompleteProps {}
 
 const SchedulingComplete: React.FC<SchedulingCompleteProps> = () => {
   const { width } = useWindowDimensions();
+  const navigation = useNavigation();
+
+  const handleHome = () => {
+    navigation.navigate('Home');
+  };
   return (
     <Container>
       <StatusBar
@@ -33,7 +39,7 @@ const SchedulingComplete: React.FC<SchedulingCompleteProps> = () => {
       </Content>
 
       <Footer>
-        <ConfirmButton title="OK" />
+        <ConfirmButton title="OK" onPress={handleHome} />
       </Footer>
     </Container>
   );
