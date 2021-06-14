@@ -47,11 +47,10 @@ LocaleConfig.locales['pt-br'] = {
   dayNamesShort: ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'],
   today: 'Hoje',
 };
+
 LocaleConfig.defaultLocale = 'pt-br';
 
-interface CalendarProps {}
-
-const Calendar: React.FC<CalendarProps> = () => {
+const Calendar: React.FC = () => {
   const theme = useTheme();
 
   return (
