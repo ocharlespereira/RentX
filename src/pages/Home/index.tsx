@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+
+import api from '../../services/api';
 
 import Logo from '../../assets/logo.svg';
 import Car from '../../components/Car';
@@ -24,6 +26,12 @@ const Home: React.FC = () => {
   const handleCarDetails = () => {
     navigation.navigate('CarDetails');
   };
+
+  useEffect(() => {
+    api.get('/cars').then((response) => {
+      console.log(response);
+    });
+  }, []);
 
   return (
     <Container>
