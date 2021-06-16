@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import api from '../../services/api';
+import { CarDTO } from '../../dtos/carDTO';
 
 import Logo from '../../assets/logo.svg';
 import Car from '../../components/Car';
@@ -21,6 +22,9 @@ const carData = {
 };
 
 const Home: React.FC = () => {
+  const [cars, setCars] = useState<CarDTO[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const navigation = useNavigation();
 
   const handleCarDetails = () => {
@@ -28,9 +32,13 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
-    api.get('/cars').then((response) => {
-      console.log(response);
-    });
+    api
+      .get('/cars')
+      .then((response) => {
+        setCars(response.data);
+      })
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -49,7 +57,7 @@ const Home: React.FC = () => {
       </Header>
 
       <CarList
-        data={[1, 2, 3, 4, 5, 6]}
+        data={cars}
         keyExtractor={(item) => String(item)}
         renderItem={({ item }) => (
           <Car data={carData} onPress={handleCarDetails} />
