@@ -29,8 +29,8 @@ const Home: React.FC = () => {
 
   const navigation = useNavigation();
 
-  const handleCarDetails = () => {
-    navigation.navigate('CarDetails');
+  const handleCarDetails = (car: CarDTO) => {
+    navigation.navigate('CarDetails', { car });
   };
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
           data={cars}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <Car data={item} onPress={handleCarDetails} />
+            <Car data={item} onPress={() => handleCarDetails(item)} />
           )}
         />
       )}

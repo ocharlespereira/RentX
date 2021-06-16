@@ -10,7 +10,7 @@ import {
 } from './styles';
 
 interface ImageSliderProps {
-  imagesUrl: string;
+  imagesUrl: string[];
 }
 
 const ImageSlider: React.FC<ImageSliderProps> = ({ imagesUrl }) => {
@@ -24,7 +24,7 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ imagesUrl }) => {
       </ImageIndexes>
 
       <CarImageWrapper>
-        <CarImage source={{ uri: imagesUrl }} resizeMode="contain" />
+        <CarImage source={{ uri: imagesUrl[0] }} resizeMode="contain" />
       </CarImageWrapper>
     </Container>
   );
