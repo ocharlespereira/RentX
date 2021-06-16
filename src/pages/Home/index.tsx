@@ -6,8 +6,10 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import api from '../../services/api';
 import { CarDTO } from '../../dtos/carDTO';
 
-import Logo from '../../assets/logo.svg';
 import Car from '../../components/Car';
+import Load from '../../components/Loading';
+
+import Logo from '../../assets/logo.svg';
 
 import { Container, Header, HeaderContent, TotalCars, CarList } from './styles';
 
@@ -56,13 +58,17 @@ const Home: React.FC = () => {
         </HeaderContent>
       </Header>
 
-      <CarList
-        data={cars}
-        keyExtractor={(item) => String(item)}
-        renderItem={({ item }) => (
-          <Car data={carData} onPress={handleCarDetails} />
-        )}
-      />
+      {loading ? (
+        <Load />
+      ) : (
+        <CarList
+          data={cars}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <Car data={item} onPress={handleCarDetails} />
+          )}
+        />
+      )}
     </Container>
   );
 };
