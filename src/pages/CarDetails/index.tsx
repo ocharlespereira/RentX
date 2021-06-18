@@ -39,6 +39,7 @@ const CarDetails: React.FC = () => {
   const handleScheduling = () => {
     navigation.navigate('Scheduling');
   };
+
   const handleBack = () => {
     navigation.goBack();
   };

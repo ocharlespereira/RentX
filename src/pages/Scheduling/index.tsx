@@ -31,6 +31,10 @@ const Scheduling: React.FC<SchedulingProps> = ({}) => {
     navigation.navigate('SchedulingDetails');
   };
 
+  const handleBack = () => {
+    navigation.goBack();
+  };
+
   return (
     <Container>
       <Header>
@@ -40,7 +44,7 @@ const Scheduling: React.FC<SchedulingProps> = ({}) => {
           backgroundColor="transparent"
         />
 
-        <BackButton onPress={() => {}} color={theme.colors.shape} />
+        <BackButton onPress={handleBack} color={theme.colors.shape} />
 
         <Title>
           Escolha uma {'\n'}
