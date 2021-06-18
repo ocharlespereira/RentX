@@ -3,6 +3,7 @@ import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 import {
   Calendar as CustomCalendar,
+  DateCallbackHandler,
   LocaleConfig,
 } from 'react-native-calendars';
 
@@ -12,7 +13,21 @@ LocaleConfig.locales['pt-br'] = ptBR;
 
 LocaleConfig.defaultLocale = 'pt-br';
 
-const Calendar: React.FC = () => {
+interface MarkedDateProps {
+  [date: string]: {
+    color: string;
+    textColor: string;
+    disabled?: boolean;
+    disableTouchEvent?: boolean;
+  };
+}
+
+interface CalendarProps {
+  markedDates: MarkedDateProps;
+  onDayPress: DateCallbackHandler;
+}
+
+const Calendar: React.FC<CalendarProps> = ({ markedDates, onDayPress }) => {
   const theme = useTheme();
 
   return (
@@ -45,7 +60,8 @@ const Calendar: React.FC = () => {
       firstDay={1}
       minDate={new Date()}
       markingType="period"
-      markedDates={}
+      markedDates={markedDates}
+      onDayPress={onDayPress}
     />
   );
 };
