@@ -13,13 +13,20 @@ LocaleConfig.locales['pt-br'] = ptBR;
 
 LocaleConfig.defaultLocale = 'pt-br';
 
-interface MarkedDateProps {
+export interface MarkedDateProps {
   [date: string]: {
     color: string;
     textColor: string;
     disabled?: boolean;
     disableTouchEvent?: boolean;
   };
+}
+
+export interface DayProps {
+  dateString: string;
+  day: number;
+  timestamp: number;
+  year: number;
 }
 
 interface CalendarProps {
