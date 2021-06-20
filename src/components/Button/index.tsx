@@ -16,7 +16,7 @@ const Button: React.FC<Props> = ({
   title,
   color,
   enabled = true,
-  loading = true,
+  loading = false,
   ...rest
 }) => {
   const theme = useTheme();

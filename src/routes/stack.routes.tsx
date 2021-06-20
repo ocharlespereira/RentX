@@ -1,12 +1,12 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Home from '../pages/Home';
-import CarDetails from '../pages/CarDetails';
-import Scheduling from '../pages/Scheduling';
-import SchedulingDetails from '../pages/SchedulingDetails';
-import SchedulingComplete from '../pages/SchedulingComplete';
-import MyCars from '../pages/MyCars';
+import Home from '../screens/Home';
+import CarDetails from '../screens/CarDetails';
+import Scheduling from '../screens/Scheduling';
+import SchedulingDetails from '../screens/SchedulingDetails';
+import SchedulingComplete from '../screens/SchedulingComplete';
+import MyCars from '../screens/MyCars';
 
 const { Navigator, Screen } = createStackNavigator();
 
