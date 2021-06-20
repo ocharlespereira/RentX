@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { Ionicons } from '@expo/vector-icons';
+import { useTheme } from 'styled-components';
 
 import api from '../../services/api';
 import { CarDTO } from '../../dtos/carDTO';
@@ -11,26 +13,28 @@ import Load from '../../components/Loading';
 
 import Logo from '../../assets/logo.svg';
 
-import { Container, Header, HeaderContent, TotalCars, CarList } from './styles';
-
-const carData = {
-  brand: 'Audi',
-  name: 'RS 5 Coupé',
-  rent: {
-    period: 'AO DIA',
-    price: 120,
-  },
-  thumbnail: 'https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png',
-};
+import {
+  Container,
+  Header,
+  HeaderContent,
+  TotalCars,
+  CarList,
+  MyCarsButton,
+} from './styles';
 
 const Home: React.FC = () => {
   const [cars, setCars] = useState<CarDTO[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const navigation = useNavigation();
+  const theme = useTheme();
+  const { navigate } = useNavigation();
 
   const handleCarDetails = (car: CarDTO) => {
-    navigation.navigate('CarDetails', { car });
+    navigate('CarDetails', { car });
+  };
+
+  const handleOpenMyCars = () => {
+    navigate('MyCars');
   };
 
   useEffect(() => {
@@ -69,6 +73,10 @@ const Home: React.FC = () => {
           )}
         />
       )}
+
+      <MyCarsButton onPress={handleOpenMyCars}>
+        <Ionicons name="ios-car-sport" size={32} color={theme.colors.shape} />
+      </MyCarsButton>
     </Container>
   );
 };

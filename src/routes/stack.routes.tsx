@@ -6,6 +6,7 @@ import CarDetails from '../pages/CarDetails';
 import Scheduling from '../pages/Scheduling';
 import SchedulingDetails from '../pages/SchedulingDetails';
 import SchedulingComplete from '../pages/SchedulingComplete';
+import MyCars from '../pages/MyCars';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -13,6 +14,7 @@ const StackRoutes: React.FC = () => {
   return (
     <Navigator headerMode="none">
       <Screen name="Home" component={Home} />
+      <Screen name="MyCars" component={MyCars} />
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />
       <Screen name="SchedulingDetails" component={SchedulingDetails} />
