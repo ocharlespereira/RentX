@@ -47,7 +47,7 @@ const Scheduling: React.FC = () => {
   );
 
   const theme = useTheme();
-  const navigation = useNavigation();
+  const { navigate, goBack } = useNavigation();
   const route = useRoute();
 
   const { car } = route.params as Params;
@@ -56,14 +56,14 @@ const Scheduling: React.FC = () => {
     if (!rentalPeriod?.start || !rentalPeriod.end) {
       return Alert.alert('Selecione o intervalo para alugar.');
     }
-    navigation.navigate('SchedulingDetails', {
+    navigate('SchedulingDetails', {
       car,
       dates: Object.keys(markedDates),
     });
   };
 
   const handleBack = () => {
-    navigation.goBack();
+    goBack();
   };
 
   const handleChangeDate = (date: DayProps) => {
