@@ -5,13 +5,13 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 
-import api from '../../services/api';
-import { CarDTO } from '../../dtos/carDTO';
-
 import Car from '../../components/Car';
 import Load from '../../components/Loading';
 
 import Logo from '../../assets/logo.svg';
+
+import api from '../../services/api';
+import { CarDTO } from '../../dtos/carDTO';
 
 import {
   Container,

@@ -9,8 +9,6 @@ import DoneSvg from '../../assets/done.svg';
 
 import { Container, Content, Title, Message, Footer } from './styles';
 
-interface SchedulingCompleteProps {}
-
 const SchedulingComplete: React.FC<SchedulingCompleteProps> = () => {
   const { width } = useWindowDimensions();
   const navigation = useNavigation();

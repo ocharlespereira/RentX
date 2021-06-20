@@ -66,9 +66,9 @@ const MyCars: React.FC = () => {
         <BackButton onPress={handleBack} color={theme.colors.shape} />
 
         <Title>
-          Escolha uma {'\n'}
-          data de início e{'\n'}
-          fim do aluguel
+          Lista de {'\n'}
+          Carros que{'\n'}
+          você alugou
         </Title>
 
         <SubTitle>Conforto, segurança e praticidade.</SubTitle>

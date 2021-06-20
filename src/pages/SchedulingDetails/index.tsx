@@ -6,14 +6,14 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { format } from 'date-fns';
 
-import { getPlatformDate } from '../../utils/getPlatformDate';
-import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
-import api from '../../services/api';
-
 import BackButton from '../../components/BackButton';
 import ImageSlider from '../../components/ImageSlider';
 import Accessory from '../../components/Accessory';
 import Button from '../../components/Button';
+
+import { getPlatformDate } from '../../utils/getPlatformDate';
+import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
+import api from '../../services/api';
 
 import { CarDTO } from '../../dtos/carDTO';
 
@@ -54,6 +54,7 @@ interface RentalPeriodProps {
 }
 
 const SchedulingDetails: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriodProps>(
     {} as RentalPeriodProps
   );
@@ -70,7 +71,7 @@ const SchedulingDetails: React.FC = () => {
   };
 
   const handleSchedulingComplete = async () => {
-    console.log(car.id);
+    setLoading(true);
     const res = await api.get(`/schedules_bycars/${car.id}`);
 
     const unavaibleDates = [...res.data.unavailable_dates, ...dates];
@@ -93,9 +94,10 @@ const SchedulingDetails: React.FC = () => {
       .then(() => {
         navigate('SchedulingComplete');
       })
-      .catch((error) =>
-        Alert.alert('Não foi possivel completar o agendamento')
-      );
+      .catch((error) => {
+        Alert.alert('Não foi possivel completar o agendamento');
+      })
+      .finally(() => setLoading(false));
   };
 
   const handleBack = () => {
@@ -181,7 +183,13 @@ const SchedulingDetails: React.FC = () => {
       </Content>
 
       <Footer>
-        <Button title="Alugar agora" onPress={handleSchedulingComplete} />
+        <Button
+          color={theme.colors.success}
+          title="Alugar agora"
+          enabled={!loading}
+          loading={loading}
+          onPress={handleSchedulingComplete}
+        />
       </Footer>
     </Container>
   );
