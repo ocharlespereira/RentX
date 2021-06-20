@@ -1,51 +1,76 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, StyleSheet, Dimensions } from 'react-native';
 import Animated, {
-  useSharedValue,
   useAnimatedStyle,
+  useSharedValue,
   withTiming,
-  Easing,
+  interpolate,
+  Extrapolate,
 } from 'react-native-reanimated';
+
+import BrandSvg from '../../assets/brand.svg';
+import LogoSvg from '../../assets/logo.svg';
 
 import { Container } from './styles';
 
-const WIDTH = Dimensions.get('window').width;
-
 const Splash: React.FC = () => {
-  const animation = useSharedValue(0);
+  const splashAnimated = useSharedValue(0); //0 -> 50
 
-  const animatedStyles = useAnimatedStyle(() => {
+  const brandStyle = useAnimatedStyle(() => {
     return {
+      opacity: interpolate(
+        splashAnimated.value,
+        [0, 50], //etapas da animação
+        [1, 0] //qual valor irá reportar quanto tiver no step da animaçao
+      ),
       transform: [
         {
-          translateX: withTiming(animation.value, {
-            duration: 1000,
-            easing: Easing.bezier(0, 0.72, 1, -0.57),
-          }),
+          translateX: interpolate(
+            splashAnimated.value,
+            [0, 50],
+            [0, -50],
+            Extrapolate.CLAMP //para nunca passar do limite que foi definido no spashAnimated.value do useEffect
+          ),
         },
       ],
     };
   });
 
-  const handleAnimationPosition = () => {
-    animation.value = Math.random() * (WIDTH - 100);
-  };
+  const logoStyle = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(
+        splashAnimated.value,
+        [0, 25, 50],
+        [0, 0.3, 1] //etapas da animação que será inversa
+      ),
+      transform: [
+        {
+          translateX: interpolate(
+            splashAnimated.value,
+            [0, 50],
+            [-50, 0],
+            Extrapolate.CLAMP
+          ),
+        },
+      ],
+    };
+  });
+
+  useEffect(() => {
+    splashAnimated.value = withTiming(50, { duration: 3000 }); //duração das animaçoes
+  }, []);
 
   return (
     <Container>
-      <Animated.View style={[styles.box, animatedStyles]} />
+      <Animated.View style={[brandStyle, { position: 'absolute' }]}>
+        <BrandSvg width={80} height={50} />
+      </Animated.View>
 
-      <Button title="Mover" onPress={handleAnimationPosition} />
+      <Animated.View style={[logoStyle, { position: 'absolute' }]}>
+        <LogoSvg width={180} height={20} />
+      </Animated.View>
     </Container>
   );
 };
-
-const styles = StyleSheet.create({
-  box: {
-    width: 100,
-    height: 100,
-    backgroundColor: 'red',
-  },
-});
 
 export default Splash;
