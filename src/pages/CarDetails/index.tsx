@@ -37,7 +37,7 @@ const CarDetails: React.FC = () => {
   const { car } = route.params as Params;
 
   const handleScheduling = () => {
-    navigation.navigate('Scheduling');
+    navigation.navigate('Scheduling', { car });
   };
 
   const handleBack = () => {
