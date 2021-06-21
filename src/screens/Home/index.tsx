@@ -14,6 +14,7 @@ import Animated, {
 
 import Car from '../../components/Car';
 import Load from '../../components/Loading';
+import LoadAnimation from '../../components/LoadAnimation';
 
 import Logo from '../../assets/logo.svg';
 
@@ -104,7 +105,7 @@ const Home: React.FC = () => {
       </Header>
 
       {loading ? (
-        <Load />
+        <LoadAnimation />
       ) : (
         <CarList
           data={cars}

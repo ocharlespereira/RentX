@@ -6,7 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 
 import BackButton from '../../components/BackButton';
 import Car from '../../components/Car';
-import Loading from '../../components/Loading';
+import LoadAnimation from '../../components/LoadAnimation';
 
 import api from '../../services/api';
 import { CarDTO } from '../../dtos/carDTO';
@@ -39,7 +39,7 @@ const MyCars: React.FC = () => {
   const [cars, setCars] = useState<CarProps[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const { navigate, goBack } = useNavigation();
+  const { goBack } = useNavigation();
   const theme = useTheme();
 
   const handleBack = () => {
@@ -75,7 +75,7 @@ const MyCars: React.FC = () => {
       </Header>
 
       {loading ? (
-        <Loading />
+        <LoadAnimation />
       ) : (
         <Content>
           <Appointments>
