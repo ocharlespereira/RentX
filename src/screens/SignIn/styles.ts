@@ -29,3 +29,5 @@ export const SubTitle = styled.Text`
 
   margin-top: 16px;
 `;
+
+export const Footer = styled.View``;
