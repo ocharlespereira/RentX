@@ -19,3 +19,13 @@ export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secundary600};
   color: ${({ theme }) => theme.colors.title};
 `;
+
+export const SubTitle = styled.Text`
+  font-size: ${RFValue(15)}px;
+  font-family: ${({ theme }) => theme.fonts.primary400};
+  color: ${({ theme }) => theme.colors.text};
+
+  line-height: ${RFValue(26)}px;
+
+  margin-top: 16px;
+`;
