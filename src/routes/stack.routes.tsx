@@ -19,7 +19,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 const StackRoutes: React.FC = () => {
   return (
-    <Navigator headerMode="none" initialRouteName="Spash">
+    <Navigator headerMode="none" initialRouteName="SignIn">
       <Screen name="Splash" component={Splash} />
       <Screen
         name="SignIn"

@@ -1,13 +1,12 @@
-import { ReactNode } from 'react';
+import React from 'react';
 
-import { Text } from 'react-native';
-
-import { Container } from './styles';
+import { Container, Header, Title } from './styles';
 
 const SignIn: React.FC = () => {
   return (
     <Container>
-      <Text>SignIn</Text>
+      <Header></Header>
+      <Title>Estamos {'\n'} quase lá</Title>
     </Container>
   );
 };
