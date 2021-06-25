@@ -4,7 +4,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 interface Props {
   color?: string;
-  light?: string;
+  light?: boolean;
 }
 
 export const Container = styled(RectButton)<Props>`
@@ -13,6 +13,7 @@ export const Container = styled(RectButton)<Props>`
   padding: 19px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 8px;
 
   background-color: ${({ theme, color }) =>
     color ? color : theme.colors.main};

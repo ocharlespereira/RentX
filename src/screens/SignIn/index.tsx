@@ -34,6 +34,7 @@ const SignIn: React.FC = () => {
           onPress={() => {}}
           enabled={false}
           loading={false}
+          light
         />
       </Footer>
     </Container>
