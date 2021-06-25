@@ -4,6 +4,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 interface Props {
   color?: string;
+  light?: string;
 }
 
 export const Container = styled(RectButton)<Props>`
@@ -17,8 +18,9 @@ export const Container = styled(RectButton)<Props>`
     color ? color : theme.colors.main};
 `;
 
-export const Title = styled.Text`
+export const Title = styled.Text<Props>`
   font-family: ${({ theme }) => theme.fonts.primary500};
-  color: ${({ theme }) => theme.colors.shape};
+  color: ${({ theme, light }) =>
+    light ? theme.colors.header : theme.colors.shape};
   font-size: ${RFValue(15)}px;
 `;

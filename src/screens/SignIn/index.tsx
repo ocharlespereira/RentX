@@ -1,6 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import Button from '../../components/Button';
+import theme from '../../styles/theme';
 
 import { Container, Header, Title, SubTitle, Footer } from './styles';
 
@@ -29,6 +30,7 @@ const SignIn: React.FC = () => {
         />
         <Button
           title="Criar conta gratuíta"
+          color={theme.colors.backgroundSecundary}
           onPress={() => {}}
           enabled={false}
           loading={false}
