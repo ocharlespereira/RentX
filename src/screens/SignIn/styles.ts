@@ -13,6 +13,10 @@ export const Header = styled.View`
   width: 100%;
   margin-top: ${getStatusBarHeight() + 116}px;
 `;
+export const Form = styled.View`
+  width: 100%;
+  margin: 64px 0;
+`;
 
 export const Title = styled.Text`
   font-size: ${RFValue(40)}px;

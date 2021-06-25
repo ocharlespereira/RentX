@@ -1,11 +1,15 @@
 import React from 'react';
+import { useTheme } from 'styled-components';
 import { StatusBar } from 'react-native';
 import Button from '../../components/Button';
-import theme from '../../styles/theme';
 
-import { Container, Header, Title, SubTitle, Footer } from './styles';
+import Input from '../../components/Input';
+
+import { Container, Header, Form, Title, SubTitle, Footer } from './styles';
 
 const SignIn: React.FC = () => {
+  const theme = useTheme();
+
   return (
     <Container>
       <StatusBar
@@ -20,6 +24,10 @@ const SignIn: React.FC = () => {
           Faça seu login para começar {'\n'} uma experiência incrível.
         </SubTitle>
       </Header>
+
+      <Form>
+        <Input icon="mail" />
+      </Form>
 
       <Footer>
         <Button
