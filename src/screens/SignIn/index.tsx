@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTheme } from 'styled-components';
 import { StatusBar } from 'react-native';
-import Button from '../../components/Button';
 
+import Button from '../../components/Button';
 import Input from '../../components/Input';
 
 import { Container, Header, Form, Title, SubTitle, Footer } from './styles';

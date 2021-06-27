@@ -17,7 +17,12 @@ const Input: React.FC<InputProps> = ({
   ...rest
 }) => {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
+
   const theme = useTheme();
+
+  const handleVisibilityPassword = () => {
+    setIsVisiblePassword((prev) => !prev);
+  };
 
   return (
     <Container>
@@ -30,7 +35,7 @@ const Input: React.FC<InputProps> = ({
       />
 
       {showPassword && (
-        <BorderlessButton onPress={() => setIsVisiblePassword((prev) => !prev)}>
+        <BorderlessButton onPress={handleVisibilityPassword}>
           <InputContainer>
             <Feather
               name={isVisiblePassword ? 'eye' : 'eye-off'}
