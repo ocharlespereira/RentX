@@ -9,16 +9,30 @@ import { Container, InputContainer, InputText } from './styles';
 interface InputProps extends TextInputProps {
   icon: ComponentProps<typeof Feather>['name'];
   showPassword?: boolean;
+  value?: string;
 }
 
 const Input: React.FC<InputProps> = ({
   icon,
   showPassword = false,
+  value,
   ...rest
 }) => {
   const [isVisiblePassword, setIsVisiblePassword] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
 
   const theme = useTheme();
+
+  const handleInputFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleIsInputBlur = () => {
+    setIsFocused(false);
+
+    setIsFilled(!!value);
+  };
 
   const handleVisibilityPassword = () => {
     setIsVisiblePassword((prev) => !prev);
@@ -26,17 +40,26 @@ const Input: React.FC<InputProps> = ({
 
   return (
     <Container>
-      <InputContainer>
-        <Feather name={icon} size={24} color={theme.colors.textDetail} />
+      <InputContainer isFocused={isFocused}>
+        <Feather
+          name={icon}
+          size={24}
+          color={
+            isFocused || isFilled ? theme.colors.main : theme.colors.textDetail
+          }
+        />
       </InputContainer>
       <InputText
+        isFocused={isFocused}
         secureTextEntry={showPassword && !isVisiblePassword ? true : false}
+        onFocus={handleInputFocus}
+        onBlur={handleIsInputBlur}
         {...rest}
       />
 
       {showPassword && (
         <BorderlessButton onPress={handleVisibilityPassword}>
-          <InputContainer>
+          <InputContainer isFocused={isFocused}>
             <Feather
               name={isVisiblePassword ? 'eye' : 'eye-off'}
               size={24}
