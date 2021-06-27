@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Alert } from 'react-native';
 import {
   StatusBar,
   KeyboardAvoidingView,
@@ -6,6 +7,7 @@ import {
   Keyboard,
 } from 'react-native';
 import { useTheme } from 'styled-components';
+import * as Yup from 'yup';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -17,6 +19,28 @@ const SignIn: React.FC = () => {
   const [password, setPassword] = useState('');
 
   const theme = useTheme();
+
+  const handleSignIn = async () => {
+    try {
+      const schema = Yup.object().shape({
+        password: Yup.string().required('A senha é obrigatória'),
+        email: Yup.string()
+          .required('E-mail obrigatório')
+          .email('Digite um e-mail válido'),
+      });
+
+      await schema.validate({ password, email });
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        return Alert.alert('Opa', error.message);
+      } else {
+        Alert.alert(
+          'Erro na autenticação',
+          'Ocorreu um erro ao fazer login, verifique as credenciais'
+        );
+      }
+    }
+  };
 
   return (
     <KeyboardAvoidingView behavior="position" enabled>
@@ -57,8 +81,8 @@ const SignIn: React.FC = () => {
           <Footer>
             <Button
               title="login"
-              onPress={() => {}}
-              enabled={false}
+              onPress={handleSignIn}
+              enabled={true}
               loading={false}
             />
             <Button
