@@ -1,15 +1,29 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-import { Text } from 'react-native';
+import BackButton from '../../../components/BackButton';
+import Bullet from '../../../components/Bullet';
 
-import { Container } from './styles';
+import { Container, Header, Steps } from './styles';
 
 interface SignUpFistStepProps {}
 
 const SignUpFistStep: React.FC = () => {
+  const { goBack } = useNavigation();
+
+  const handleBack = () => {
+    goBack();
+  };
+
   return (
     <Container>
-      <Text>SignUpFistStep</Text>
+      <Header>
+        <BackButton onPress={handleBack} />
+        <Steps>
+          <Bullet active={true} />
+          <Bullet />
+        </Steps>
+      </Header>
     </Container>
   );
 };

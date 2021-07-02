@@ -3,10 +3,10 @@ import React from 'react';
 import { Container } from './styles';
 
 interface BulletProps {
-  active: boolean;
+  active?: boolean;
 }
 
-const Bullet: React.FC<BulletProps> = ({ active }) => {
+const Bullet: React.FC<BulletProps> = ({ active = false }) => {
   return <Container active={active} />;
 };
 

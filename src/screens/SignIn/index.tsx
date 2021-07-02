@@ -45,6 +45,7 @@ const SignIn: React.FC = () => {
   };
 
   const handleNewAccount = () => {
+    console.log('passei aqui');
     navigate('SignUpFistStep');
   };
 
@@ -95,7 +96,7 @@ const SignIn: React.FC = () => {
               title="Criar conta gratuíta"
               color={theme.colors.backgroundSecundary}
               onPress={handleNewAccount}
-              enabled={false}
+              enabled={true}
               loading={false}
               light
             />
