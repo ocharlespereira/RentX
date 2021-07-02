@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
 import {
   StatusBar,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  Alert,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import * as Yup from 'yup';
 
@@ -44,7 +44,7 @@ const SignIn: React.FC = () => {
     }
   };
 
-  const handleNewAccout = () => {
+  const handleNewAccount = () => {
     navigate('SignUpFistStep');
   };
 
@@ -94,8 +94,8 @@ const SignIn: React.FC = () => {
             <Button
               title="Criar conta gratuíta"
               color={theme.colors.backgroundSecundary}
-              onPress={handleNewAccout}
-              enabled
+              onPress={handleNewAccount}
+              enabled={false}
               loading={false}
               light
             />
