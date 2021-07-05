@@ -48,8 +48,16 @@ const SignUpFistStep: React.FC = () => {
           <Form>
             <FormTitle>1. dados</FormTitle>
             <Input icon="user" placeholder="Nome" />
-            <Input icon="mail" placeholder="E-mail" />
-            <Input icon="credit-card" placeholder="CNH" />
+            <Input
+              icon="mail"
+              placeholder="E-mail"
+              keyboardType="email-address"
+            />
+            <Input
+              icon="credit-card"
+              placeholder="CNH"
+              keyboardType="numeric"
+            />
           </Form>
 
           <Button title="Próximo" />
