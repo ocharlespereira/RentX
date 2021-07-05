@@ -24,10 +24,14 @@ import {
 interface SignUpFistStepProps {}
 
 const SignUpFistStep: React.FC = () => {
-  const { goBack } = useNavigation();
+  const { goBack, navigate } = useNavigation();
 
   const handleBack = () => {
     goBack();
+  };
+
+  const handleNextStep = () => {
+    navigate('SignUpSecond');
   };
 
   return (
@@ -46,7 +50,7 @@ const SignUpFistStep: React.FC = () => {
           <SubTitle>Faça seu cadastro de{'\n'}forma rápida e fácil</SubTitle>
 
           <Form>
-            <FormTitle>1. dados</FormTitle>
+            <FormTitle>1. Dados</FormTitle>
             <Input icon="user" placeholder="Nome" />
             <Input
               icon="mail"
@@ -60,7 +64,7 @@ const SignUpFistStep: React.FC = () => {
             />
           </Form>
 
-          <Button title="Próximo" />
+          <Button title="Próximo" onPress={handleNextStep} />
         </Container>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>

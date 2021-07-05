@@ -4,6 +4,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from 'react-native';
+import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 
 import BackButton from '../../../components/BackButton';
@@ -25,6 +26,7 @@ interface SignUpSecondProps {}
 
 const SignUpSecond: React.FC = () => {
   const { goBack } = useNavigation();
+  const theme = useTheme();
 
   const handleBack = () => {
     goBack();
@@ -46,21 +48,12 @@ const SignUpSecond: React.FC = () => {
           <SubTitle>Faça seu cadastro de{'\n'}forma rápida e fácil</SubTitle>
 
           <Form>
-            <FormTitle>1. dados</FormTitle>
-            <Input icon="user" placeholder="Nome" />
-            <Input
-              icon="mail"
-              placeholder="E-mail"
-              keyboardType="email-address"
-            />
-            <Input
-              icon="credit-card"
-              placeholder="CNH"
-              keyboardType="numeric"
-            />
+            <FormTitle>2. Senha</FormTitle>
+            <Input icon="lock" placeholder="Senha" showPassword />
+            <Input icon="lock" placeholder="Repetir senha" showPassword />
           </Form>
 
-          <Button title="Próximo" />
+          <Button title="Cadastrar" color={theme.colors.success} />
         </Container>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
