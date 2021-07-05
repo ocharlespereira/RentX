@@ -39,8 +39,8 @@ const SignUpSecond: React.FC = () => {
           <Header>
             <BackButton onPress={handleBack} />
             <Steps>
-              <Bullet active={true} />
               <Bullet />
+              <Bullet active={true} />
             </Steps>
           </Header>
 
