@@ -10,6 +10,7 @@ import MyCars from '../screens/MyCars';
 import Splash from '../screens/Splash';
 import SignIn from '../screens/SignIn';
 import SignUpFistStep from '../screens/SignUp/SignUpFistStep';
+import SignUpSecond from '../screens/SignUp/SignUpSecond';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -20,12 +21,17 @@ const { Navigator, Screen } = createStackNavigator();
 
 const StackRoutes: React.FC = () => {
   return (
-    <Navigator headerMode="none" initialRouteName="SignIn">
+    <Navigator headerMode="none" initialRouteName="SignUpSecond">
       {/* <Screen name="Splash" component={Splash} /> */}
       <Screen name="SignIn" component={SignIn} />
       <Screen
         name="SignUpFistStep"
         component={SignUpFistStep}
+        options={{ gestureEnabled: false }}
+      />
+      <Screen
+        name="SignUpSecond"
+        component={SignUpSecond}
         options={{ gestureEnabled: false }}
       />
       <Screen
