@@ -13,6 +13,7 @@ import {
   Form,
   FormTitle,
 } from './styles';
+import Input from '../../../components/Input';
 
 interface SignUpFistStepProps {}
 
@@ -38,6 +39,9 @@ const SignUpFistStep: React.FC = () => {
 
       <Form>
         <FormTitle>1. dados</FormTitle>
+        <Input icon="user" placeholder="Nome" />
+        <Input icon="mail" placeholder="E-mail" />
+        <Input icon="credit-card" placeholder="CNH" />
       </Form>
     </Container>
   );
