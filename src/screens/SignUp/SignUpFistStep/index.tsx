@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   KeyboardAvoidingView,
   Keyboard,
   TouchableWithoutFeedback,
+  Alert,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import * as Yup from 'yup';
 
 import BackButton from '../../../components/BackButton';
 import Bullet from '../../../components/Bullet';
@@ -24,14 +26,35 @@ import {
 interface SignUpFistStepProps {}
 
 const SignUpFistStep: React.FC = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [driveLicense, setDriveLicense] = useState('');
+
   const { goBack, navigate } = useNavigation();
 
   const handleBack = () => {
     goBack();
   };
 
-  const handleNextStep = () => {
-    navigate('SignUpSecond');
+  const handleNextStep = async () => {
+    try {
+      const schema = Yup.object().shape({
+        driveLicense: Yup.string().required('CNH é obrigatório.'),
+        email: Yup.string()
+          .email('E-mail inválido.')
+          .required('E-mail é obrigatório.'),
+        name: Yup.string().required('Nome é obrigatório.'),
+      });
+
+      const data = { name, email, driveLicense };
+      await schema.validate(data);
+
+      navigate('SignUpSecond', { user: data });
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        return Alert.alert('Opa', error.message);
+      }
+    }
   };
 
   return (
@@ -51,16 +74,25 @@ const SignUpFistStep: React.FC = () => {
 
           <Form>
             <FormTitle>1. Dados</FormTitle>
-            <Input icon="user" placeholder="Nome" />
+            <Input
+              icon="user"
+              placeholder="Nome"
+              onChangeText={setName}
+              value={name}
+            />
             <Input
               icon="mail"
               placeholder="E-mail"
               keyboardType="email-address"
+              onChangeText={setEmail}
+              value={email}
             />
             <Input
               icon="credit-card"
               placeholder="CNH"
               keyboardType="numeric"
+              onChangeText={setDriveLicense}
+              value={driveLicense}
             />
           </Form>
 
