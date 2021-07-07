@@ -92,7 +92,11 @@ const SchedulingDetails: React.FC = () => {
         unavailable_dates: unavaibleDates,
       })
       .then(() => {
-        navigate('SchedulingComplete');
+        navigate('Confirmation', {
+          title: 'Carro alugado!',
+          message: `Agora você só precisa ir\naté a concessionária da RENTX\npegar o seu automóvel.`,
+          nextScreenRoute: 'Home',
+        });
       })
       .catch((error) => {
         Alert.alert('Não foi possivel completar o agendamento');

@@ -35,7 +35,7 @@ const SignUpSecond: React.FC = () => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
-  const { goBack } = useNavigation();
+  const { goBack, navigate } = useNavigation();
   const route = useRoute();
   const theme = useTheme();
 
@@ -53,6 +53,12 @@ const SignUpSecond: React.FC = () => {
     if (password !== passwordConfirm) {
       return Alert.alert('As senhas não são iguais.');
     }
+
+    navigate('Confirmation', {
+      title: 'Conta criada',
+      message: `Agora é só fazer login\ne aproveitar`,
+      nextScreenRoute: 'SignIn',
+    });
   };
 
   return (
