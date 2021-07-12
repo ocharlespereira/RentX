@@ -22,6 +22,7 @@ import {
   Form,
   FormTitle,
 } from './styles';
+import api from '../../../services/api';
 
 interface SignUpSecondProps {
   user: {
@@ -45,7 +46,7 @@ const SignUpSecond: React.FC = () => {
     goBack();
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!password || !passwordConfirm) {
       return Alert.alert('Informe a senha e a confirmação.');
     }
@@ -53,6 +54,13 @@ const SignUpSecond: React.FC = () => {
     if (password !== passwordConfirm) {
       return Alert.alert('As senhas não são iguais.');
     }
+
+    await api.post('/user', {
+      name: user.name,
+      email: user.email,
+      password,
+      drive_license: user.driveLicense,
+    });
 
     navigate('Confirmation', {
       title: 'Conta criada',
