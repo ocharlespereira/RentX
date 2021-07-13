@@ -55,18 +55,20 @@ const SignUpSecond: React.FC = () => {
       return Alert.alert('As senhas não são iguais.');
     }
 
-    await api.post('/user', {
-      name: user.name,
-      email: user.email,
-      password,
-      drive_license: user.driveLicense,
-    });
-
-    navigate('Confirmation', {
-      title: 'Conta criada',
-      message: `Agora é só fazer login\ne aproveitar`,
-      nextScreenRoute: 'SignIn',
-    });
+    await api
+      .post('/user', {
+        name: user.name,
+        email: user.email,
+        drive_license: user.driveLicense,
+        password,
+      })
+      .then(() => {
+        navigate('Confirmation', {
+          title: 'Conta criada',
+          message: `Agora é só fazer login\ne aproveitar`,
+          nextScreenRoute: 'SignIn',
+        });
+      });
   };
 
   return (
