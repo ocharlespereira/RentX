@@ -8,6 +8,8 @@ import {
 import { useTheme } from 'styled-components';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
+import api from '../../../services/api';
+
 import BackButton from '../../../components/BackButton';
 import Bullet from '../../../components/Bullet';
 import Input from '../../../components/Input';
@@ -22,7 +24,6 @@ import {
   Form,
   FormTitle,
 } from './styles';
-import api from '../../../services/api';
 
 interface SignUpSecondProps {
   user: {
@@ -56,18 +57,25 @@ const SignUpSecond: React.FC = () => {
     }
 
     await api
-      .post('/user', {
+      .post('/users', {
         name: user.name,
         email: user.email,
         drive_license: user.driveLicense,
         password,
       })
       .then(() => {
+        console.log('deu tudo certo', user);
         navigate('Confirmation', {
           title: 'Conta criada',
           message: `Agora é só fazer login\ne aproveitar`,
           nextScreenRoute: 'SignIn',
         });
+      })
+      .catch(() => {
+        Alert.alert(
+          'Error.',
+          'Não foi possivel cadastrar o usuário, tente novamente.'
+        );
       });
   };
 
