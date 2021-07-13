@@ -26,7 +26,7 @@ interface AuthcontextData {
 
 const AuthContext = createContext<AuthcontextData>({} as AuthcontextData);
 
-const AuthProvider: React.FC<AuthcontextData> = ({ children }) => {
+const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
 
   const signIn = async ({ email, password }: SigninCredentials) => {
