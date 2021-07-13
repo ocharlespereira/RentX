@@ -47,6 +47,8 @@ const SignUpSecond: React.FC = () => {
     goBack();
   };
 
+  console.log('user', user);
+
   const handleRegister = async () => {
     if (!password || !passwordConfirm) {
       return Alert.alert('Informe a senha e a confirmação.');
@@ -56,15 +58,21 @@ const SignUpSecond: React.FC = () => {
       return Alert.alert('As senhas não são iguais.');
     }
 
+    console.log({
+      name: user.name,
+      email: user.email,
+      drive_license: user.driveLicense,
+      password,
+    });
+
     await api
       .post('/users', {
         name: user.name,
         email: user.email,
-        drive_license: user.driveLicense,
+        driver_license: user.driveLicense,
         password,
       })
       .then(() => {
-        console.log('deu tudo certo', user);
         navigate('Confirmation', {
           title: 'Conta criada',
           message: `Agora é só fazer login\ne aproveitar`,
