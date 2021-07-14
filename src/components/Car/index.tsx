@@ -33,8 +33,8 @@ const Car: React.FC<CarProps> = ({ data, ...rest }) => {
 
         <About>
           <Rent>
-            <Period>{data.rent.period}</Period>
-            <Price>{`RS ${data.rent.price}`}</Price>
+            <Period>{data.period}</Period>
+            <Price>{`RS ${data.price}`}</Price>
           </Rent>
 
           <Type>
