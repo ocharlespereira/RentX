@@ -19,11 +19,12 @@ const { Navigator, Screen } = createStackNavigator();
  * gestureEnabled -> desabilita o gesto voltar do ios
  */
 
-const StackRoutes: React.FC = () => {
+const AuthRoutes: React.FC = () => {
   return (
     <Navigator headerMode="none" initialRouteName="SignIn">
-      {/* <Screen name="Splash" component={Splash} /> */}
+      <Screen name="Splash" component={Splash} />
       <Screen name="SignIn" component={SignIn} />
+      <Screen name="Confirmation" component={Confirmation} />
       <Screen
         name="SignUpFistStep"
         component={SignUpFistStep}
@@ -34,18 +35,8 @@ const StackRoutes: React.FC = () => {
         component={SignUpSecond}
         options={{ gestureEnabled: false }}
       />
-      <Screen
-        name="Home"
-        component={Home}
-        options={{ gestureEnabled: false }}
-      />
-      <Screen name="MyCars" component={MyCars} />
-      <Screen name="CarDetails" component={CarDetails} />
-      <Screen name="Scheduling" component={Scheduling} />
-      <Screen name="SchedulingDetails" component={SchedulingDetails} />
-      <Screen name="Confirmation" component={Confirmation} />
     </Navigator>
   );
 };
 
-export default StackRoutes;
+export default AuthRoutes;
