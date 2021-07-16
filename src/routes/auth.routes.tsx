@@ -1,12 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Home from '../screens/Home';
-import CarDetails from '../screens/CarDetails';
-import Scheduling from '../screens/Scheduling';
-import SchedulingDetails from '../screens/SchedulingDetails';
 import Confirmation from '../screens/Confirmation';
-import MyCars from '../screens/MyCars';
 import Splash from '../screens/Splash';
 import SignIn from '../screens/SignIn';
 import SignUpFistStep from '../screens/SignUp/SignUpFistStep';
@@ -24,7 +19,6 @@ const AuthRoutes: React.FC = () => {
     <Navigator headerMode="none" initialRouteName="SignIn">
       <Screen name="Splash" component={Splash} />
       <Screen name="SignIn" component={SignIn} />
-      <Screen name="Confirmation" component={Confirmation} />
       <Screen
         name="SignUpFistStep"
         component={SignUpFistStep}
@@ -35,6 +29,7 @@ const AuthRoutes: React.FC = () => {
         component={SignUpSecond}
         options={{ gestureEnabled: false }}
       />
+      <Screen name="Confirmation" component={Confirmation} />
     </Navigator>
   );
 };
