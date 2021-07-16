@@ -16,7 +16,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 const AuthRoutes: React.FC = () => {
   return (
-    <Navigator headerMode="none" initialRouteName="SignIn">
+    <Navigator headerMode="none" initialRouteName="Splash">
       <Screen name="Splash" component={Splash} />
       <Screen name="SignIn" component={SignIn} />
       <Screen
