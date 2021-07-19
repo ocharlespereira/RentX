@@ -7,10 +7,6 @@ import Scheduling from '../screens/Scheduling';
 import SchedulingDetails from '../screens/SchedulingDetails';
 import Confirmation from '../screens/Confirmation';
 import MyCars from '../screens/MyCars';
-import Splash from '../screens/Splash';
-import SignIn from '../screens/SignIn';
-import SignUpFistStep from '../screens/SignUp/SignUpFistStep';
-import SignUpSecond from '../screens/SignUp/SignUpSecond';
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -21,8 +17,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 const AppStackRoutes: React.FC = () => {
   return (
-    <Navigator headerMode="none" initialRouteName="Splash">
-      <Screen name="Splash" component={Splash} />
+    <Navigator headerMode="none" initialRouteName="Home">
       <Screen
         name="Home"
         component={Home}

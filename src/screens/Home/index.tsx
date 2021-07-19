@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { BackHandler, StatusBar, StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
@@ -13,7 +13,6 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import Car from '../../components/Car';
-import Load from '../../components/Loading';
 import LoadAnimation from '../../components/LoadAnimation';
 
 import Logo from '../../assets/logo.svg';
@@ -83,11 +82,11 @@ const Home: React.FC = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', () => {
-      return true;
-    });
-  });
+  // useEffect(() => {
+  //   BackHandler.addEventListener('hardwareBackPress', () => {
+  //     return true;
+  //   });
+  // });
 
   return (
     <Container>
