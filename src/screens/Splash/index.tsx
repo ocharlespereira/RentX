@@ -60,7 +60,7 @@ const Splash: React.FC = () => {
   });
 
   const startApp = () => {
-    navigate('Home');
+    navigate('SignIn');
   };
 
   useEffect(() => {
