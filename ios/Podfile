@@ -5,29 +5,10 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 platform :ios, '11.0'
 
 target 'rentx' do
-  use_frameworks!
   use_unimodules!
   config = use_native_modules!
   
   use_react_native!(:path => config["reactNativePath"])
+  pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi', :modular_headers => true
 
-# If you're using autolinking, this line might not be needed
-# pod 'WatermelonDB', :path => '../node_modules/@nozbe/watermelondb'
-
-# NOTE: Do not remove, needed to keep WatermelonDB compiling:
-pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi', :modular_headers => true
-
-# NOTE: This is required as of v0.23
-# pod 'simdjson', path: '../node_modules/@nozbe/simdjson'
-
-
-
-  # Uncomment to opt-in to using Flipper
-  #
-  # if !ENV['CI']
-  #   use_flipper!('Flipper' => '0.75.1', 'Flipper-Folly' => '2.5.3', 'Flipper-RSocket' => '1.3.1')
-  #   post_install do |installer|
-  #     flipper_post_install(installer)
-  #   end
-  # end
 end
