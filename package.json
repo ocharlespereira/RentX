@@ -5,6 +5,7 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "start": "react-native start",
+    "clear-reinstall": "./scripts/clearReinstall.sh",
     "server": "json-server ./src/services/server.json -H 192.168.100.44 -d 700 -w -p 3333",
     "test": "jest"
   },
