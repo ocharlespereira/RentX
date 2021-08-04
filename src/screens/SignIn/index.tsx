@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 import {
@@ -11,6 +11,8 @@ import { useTheme } from 'styled-components';
 import * as Yup from 'yup';
 
 import { useAuth } from '../../hooks/auth';
+
+import { database } from '../../databases';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -53,6 +55,18 @@ const SignIn: React.FC = () => {
     console.log('passei aqui');
     navigate('SignUpFistStep');
   };
+
+  useEffect(() => {
+    //Teste criação database no watermelon
+    const loadData = async () => {
+      const userCollection = database.get('users');
+      const users = await userCollection.query().fetch();
+      console.log('Users cadastrados na base de dados');
+      console.log(users);
+    };
+
+    loadData();
+  }, []);
 
   return (
     <KeyboardAvoidingView behavior="position" enabled>
