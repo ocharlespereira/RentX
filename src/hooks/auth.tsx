@@ -63,7 +63,15 @@ const AuthProvider: React.FC = ({ children }) => {
     const loadUserData = async () => {
       const userCollection = database.get<ModelUser>('users');
       const response = await userCollection.query().fetch();
-      console.log('response', response);
+
+      //captura user do watermelon
+      if (response.length > 0) {
+        const userData = response[0]._raw as unknown as User;
+
+        //incluir novamente o cabeçalho do token
+        api.defaults.headers.authorization = `Bearer ${userData.token}`;
+        setData(userData);
+      }
     };
 
     loadUserData();
