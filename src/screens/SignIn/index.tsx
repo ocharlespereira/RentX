@@ -56,17 +56,17 @@ const SignIn: React.FC = () => {
     navigate('SignUpFistStep');
   };
 
-  useEffect(() => {
-    //Teste criação database no watermelon
-    const loadData = async () => {
-      const userCollection = database.get('users');
-      const users = await userCollection.query().fetch();
-      console.log('Users cadastrados na base de dados');
-      console.log(users);
-    };
+  // useEffect(() => {
+  //   //Teste criação database no watermelon
+  //   const loadData = async () => {
+  //     const userCollection = database.get('users');
+  //     const users = await userCollection.query().fetch();
+  //     console.log('Users cadastrados na base de dados');
+  //     console.log(users);
+  //   };
 
-    loadData();
-  }, []);
+  //   loadData();
+  // }, []);
 
   return (
     <KeyboardAvoidingView behavior="position" enabled>

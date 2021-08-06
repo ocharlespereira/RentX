@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 import api from '../services/api';
 import { database } from '../databases';
@@ -7,16 +7,13 @@ import { User as ModelUser } from '../databases/model/User';
 
 interface User {
   id: string;
+  user_id: string;
   email: string;
+  name: string;
   driver_license: string;
   avatar: string;
-}
-
-interface AuthState {
   token: string;
-  user: User;
 }
-
 interface SigninCredentials {
   email: string;
   password: string;
@@ -30,7 +27,7 @@ interface AuthcontextData {
 const AuthContext = createContext<AuthcontextData>({} as AuthcontextData);
 
 const AuthProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<AuthState>({} as AuthState);
+  const [data, setData] = useState<User>({} as User);
 
   const signIn = async ({ email, password }: SigninCredentials) => {
     try {
@@ -56,14 +53,24 @@ const AuthProvider: React.FC = ({ children }) => {
         });
       });
 
-      setData({ token, user });
+      setData({ ...user, token });
     } catch (error) {
       throw new Error(error);
     }
   };
 
+  useEffect(() => {
+    const loadUserData = async () => {
+      const userCollection = database.get<ModelUser>('users');
+      const response = await userCollection.query().fetch();
+      console.log('response', response);
+    };
+
+    loadUserData();
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn }}>
+    <AuthContext.Provider value={{ user: data, signIn }}>
       {children}
     </AuthContext.Provider>
   );
