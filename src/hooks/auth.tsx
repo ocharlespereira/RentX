@@ -1,6 +1,9 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
 import api from '../services/api';
+import { database } from '../databases';
+
+import { User as ModelUser } from '../databases/model/User';
 
 interface User {
   id: string;
@@ -30,16 +33,33 @@ const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>({} as AuthState);
 
   const signIn = async ({ email, password }: SigninCredentials) => {
-    const response = await api.post('/sessions', {
-      email,
-      password,
-    });
+    try {
+      const response = await api.post('/sessions', {
+        email,
+        password,
+      });
 
-    const { token, user } = response.data;
+      const { token, user } = response.data;
 
-    api.defaults.headers.authorization = `Bearer ${token}`;
+      api.defaults.headers.authorization = `Bearer ${token}`;
 
-    setData({ token, user });
+      //salvar database local
+      const userCollection = database.get<ModelUser>('users');
+      await database.action(async () => {
+        await userCollection.create((newUser) => {
+          (newUser.user_id = user.id),
+            (newUser.name = user.name),
+            (newUser.email = user.email),
+            (newUser.driver_license = user.driver_license),
+            (newUser.avatar = user.avatar),
+            (newUser.token = token);
+        });
+      });
+
+      setData({ token, user });
+    } catch (error) {
+      throw new Error(error);
+    }
   };
 
   return (
