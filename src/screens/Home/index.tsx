@@ -24,13 +24,24 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
+    let isMounted = true;
     api
       .get('/cars')
       .then((response) => {
-        setCars(response.data);
+        if (isMounted) {
+          setCars(response.data);
+        }
       })
       .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+      .finally(() => {
+        if (isMounted) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (
