@@ -14,6 +14,11 @@ import {
   PhotoContainer,
   Photo,
   PhotoButton,
+  Content,
+  ContentHeader,
+  Options,
+  Option,
+  OptionTitle,
 } from './styles';
 
 const Profile: React.FC = () => {
@@ -41,6 +46,19 @@ const Profile: React.FC = () => {
           </PhotoButton>
         </PhotoContainer>
       </Header>
+
+      <Content>
+        <ContentHeader>
+          <Options>
+            <Option active={true}>
+              <OptionTitle active={true}>Dados</OptionTitle>
+            </Option>
+            <Option active={false}>
+              <OptionTitle active={true}>Trocar senha</OptionTitle>
+            </Option>
+          </Options>
+        </ContentHeader>
+      </Content>
     </Container>
   );
 };

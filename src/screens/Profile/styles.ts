@@ -3,6 +3,10 @@ import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 
+interface OptionsProps {
+  active?: boolean;
+}
+
 export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
@@ -63,3 +67,13 @@ export const PhotoButton = styled(RectButton)`
   bottom: 10px;
   right: 10px;
 `;
+
+export const Content = styled.View``;
+
+export const ContentHeader = styled.View``;
+
+export const Options = styled.View``;
+
+export const Option = styled.View<OptionsProps>``;
+
+export const OptionTitle = styled.Text<OptionsProps>``;
