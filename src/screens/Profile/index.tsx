@@ -13,6 +13,7 @@ import {
   LogoutButton,
   PhotoContainer,
   Photo,
+  PhotoButton,
 } from './styles';
 
 const Profile: React.FC = () => {
@@ -34,6 +35,10 @@ const Profile: React.FC = () => {
 
         <PhotoContainer>
           <Photo source={{ uri: 'https://github.com/charlespereira1.png' }} />
+
+          <PhotoButton onPress={() => {}}>
+            <Feather name="camera" size={24} color={theme.colors.shape} />
+          </PhotoButton>
         </PhotoContainer>
       </Header>
     </Container>
