@@ -15,7 +15,6 @@ import {
   Photo,
   PhotoButton,
   Content,
-  ContentHeader,
   Options,
   Option,
   OptionTitle,
@@ -48,16 +47,14 @@ const Profile: React.FC = () => {
       </Header>
 
       <Content>
-        <ContentHeader>
-          <Options>
-            <Option active={true}>
-              <OptionTitle active={true}>Dados</OptionTitle>
-            </Option>
-            <Option active={false}>
-              <OptionTitle active={true}>Trocar senha</OptionTitle>
-            </Option>
-          </Options>
-        </ContentHeader>
+        <Options>
+          <Option active={true}>
+            <OptionTitle active={true}>Dados</OptionTitle>
+          </Option>
+          <Option active={false}>
+            <OptionTitle active={false}>Trocar senha</OptionTitle>
+          </Option>
+        </Options>
       </Content>
     </Container>
   );
