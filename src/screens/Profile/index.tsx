@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import { Feather } from '@expo/vector-icons';
@@ -21,10 +21,16 @@ import {
 } from './styles';
 
 const Profile: React.FC = () => {
+  const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit');
+
   const theme = useTheme();
   const { goBack } = useNavigation();
 
   const handleSinOut = () => {};
+
+  const handleOptionChange = (optionSelected: 'dataEdit' | 'passwordEdit') => {
+    setOption(optionSelected);
+  };
 
   return (
     <Container>
@@ -48,11 +54,19 @@ const Profile: React.FC = () => {
 
       <Content>
         <Options>
-          <Option active={true}>
-            <OptionTitle active={true}>Dados</OptionTitle>
+          <Option
+            active={option === 'dataEdit'}
+            onPress={() => handleOptionChange('dataEdit')}
+          >
+            <OptionTitle active={option === 'dataEdit'}>Dados</OptionTitle>
           </Option>
-          <Option active={false}>
-            <OptionTitle active={false}>Trocar senha</OptionTitle>
+          <Option
+            active={option === 'passwordEdit'}
+            onPress={() => handleOptionChange('passwordEdit')}
+          >
+            <OptionTitle active={option === 'passwordEdit'}>
+              Trocar senha
+            </OptionTitle>
           </Option>
         </Options>
       </Content>
