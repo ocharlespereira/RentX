@@ -81,21 +81,23 @@ const Profile: React.FC = () => {
                 </OptionTitle>
               </Option>
             </Options>
-
-            <Section>
-              <Input icon="user" placeholder="Nome" autoCorrect={false} />
-              <Input icon="mail" editable={false} />
-              <Input
-                icon="credit-card"
-                placeholder="CNH"
-                keyboardType="numeric"
-              />
-            </Section>
-            <Section>
-              <Input icon="lock" placeholder="Senha atual" showPassword />
-              <Input icon="lock" placeholder="Nova senha" showPassword />
-              <Input icon="lock" placeholder="Repetir senha" showPassword />
-            </Section>
+            {option === 'dataEdit' ? (
+              <Section>
+                <Input icon="user" placeholder="Nome" autoCorrect={false} />
+                <Input icon="mail" editable={false} />
+                <Input
+                  icon="credit-card"
+                  placeholder="CNH"
+                  keyboardType="numeric"
+                />
+              </Section>
+            ) : (
+              <Section>
+                <Input icon="lock" placeholder="Senha atual" showPassword />
+                <Input icon="lock" placeholder="Nova senha" showPassword />
+                <Input icon="lock" placeholder="Repetir senha" showPassword />
+              </Section>
+            )}
           </Content>
         </Container>
       </TouchableWithoutFeedback>

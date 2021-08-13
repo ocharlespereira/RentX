@@ -2,7 +2,7 @@ import React, { ComponentProps, useState } from 'react';
 import { TextInputProps } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
-import { BorderlessButton } from 'react-native-gesture-handler';
+import { RectButton } from 'react-native-gesture-handler';
 
 import { Container, InputContainer, InputText } from './styles';
 
@@ -59,7 +59,7 @@ const Input: React.FC<InputProps> = ({
       />
 
       {showPassword && (
-        <BorderlessButton onPress={handleVisibilityPassword}>
+        <RectButton onPress={handleVisibilityPassword}>
           <InputContainer isFocused={isFocused}>
             <Feather
               name={isVisiblePassword ? 'eye' : 'eye-off'}
@@ -67,7 +67,7 @@ const Input: React.FC<InputProps> = ({
               color={theme.colors.textDetail}
             />
           </InputContainer>
-        </BorderlessButton>
+        </RectButton>
       )}
     </Container>
   );
