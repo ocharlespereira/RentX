@@ -64,7 +64,7 @@ const Profile: React.FC = () => {
             </PhotoContainer>
           </Header>
 
-          <Content>
+          <Content style={{ marginBottom: useBottomTabBarHeight() }}>
             <Options>
               <Option
                 active={option === 'dataEdit'}
@@ -82,12 +82,12 @@ const Profile: React.FC = () => {
               </Option>
             </Options>
 
-            <Section style={{ marginBottom: useBottomTabBarHeight() }}>
+            <Section>
               <Input icon="user" placeholder="Nome" autoCorrect={false} />
               <Input icon="mail" editable={false} />
               <Input
                 icon="credit-card"
-                placeholder="CND"
+                placeholder="CNH"
                 keyboardType="numeric"
               />
             </Section>
