@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
+import {
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'styled-components';
 import { Feather } from '@expo/vector-icons';
 
 import BackButton from '../../components/BackButton';
+import Input from '../../components/Input';
 
 import {
   Container,
@@ -18,6 +25,7 @@ import {
   Options,
   Option,
   OptionTitle,
+  Section,
 } from './styles';
 
 const Profile: React.FC = () => {
@@ -33,44 +41,60 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Header>
-        <HeaderTop>
-          <BackButton color={theme.colors.shape} onPress={() => goBack()} />
-          <HeanderTitle>Editar Perfil</HeanderTitle>
-          <LogoutButton onPress={handleSinOut}>
-            <Feather name="power" size={24} color={theme.colors.shape} />
-          </LogoutButton>
-        </HeaderTop>
+    <KeyboardAvoidingView behavior="position" enabled>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Container>
+          <Header>
+            <HeaderTop>
+              <BackButton color={theme.colors.shape} onPress={() => goBack()} />
+              <HeanderTitle>Editar Perfil</HeanderTitle>
+              <LogoutButton onPress={handleSinOut}>
+                <Feather name="power" size={24} color={theme.colors.shape} />
+              </LogoutButton>
+            </HeaderTop>
 
-        <PhotoContainer>
-          <Photo source={{ uri: 'https://github.com/charlespereira1.png' }} />
+            <PhotoContainer>
+              <Photo
+                source={{ uri: 'https://github.com/charlespereira1.png' }}
+              />
 
-          <PhotoButton onPress={() => {}}>
-            <Feather name="camera" size={24} color={theme.colors.shape} />
-          </PhotoButton>
-        </PhotoContainer>
-      </Header>
+              <PhotoButton onPress={() => {}}>
+                <Feather name="camera" size={24} color={theme.colors.shape} />
+              </PhotoButton>
+            </PhotoContainer>
+          </Header>
 
-      <Content>
-        <Options>
-          <Option
-            active={option === 'dataEdit'}
-            onPress={() => handleOptionChange('dataEdit')}
-          >
-            <OptionTitle active={option === 'dataEdit'}>Dados</OptionTitle>
-          </Option>
-          <Option
-            active={option === 'passwordEdit'}
-            onPress={() => handleOptionChange('passwordEdit')}
-          >
-            <OptionTitle active={option === 'passwordEdit'}>
-              Trocar senha
-            </OptionTitle>
-          </Option>
-        </Options>
-      </Content>
-    </Container>
+          <Content>
+            <Options>
+              <Option
+                active={option === 'dataEdit'}
+                onPress={() => handleOptionChange('dataEdit')}
+              >
+                <OptionTitle active={option === 'dataEdit'}>Dados</OptionTitle>
+              </Option>
+              <Option
+                active={option === 'passwordEdit'}
+                onPress={() => handleOptionChange('passwordEdit')}
+              >
+                <OptionTitle active={option === 'passwordEdit'}>
+                  Trocar senha
+                </OptionTitle>
+              </Option>
+            </Options>
+
+            <Section style={{ marginBottom: useBottomTabBarHeight() }}>
+              <Input icon="user" placeholder="Nome" autoCorrect={false} />
+              <Input icon="mail" editable={false} />
+              <Input
+                icon="credit-card"
+                placeholder="CND"
+                keyboardType="numeric"
+              />
+            </Section>
+          </Content>
+        </Container>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 

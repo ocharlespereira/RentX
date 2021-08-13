@@ -8,7 +8,7 @@ interface OptionsProps {
 }
 
 export const Container = styled.View`
-  flex: 1;
+  /* flex: 1; */
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
 `;
 
@@ -69,7 +69,7 @@ export const PhotoButton = styled(RectButton)`
 `;
 
 export const Content = styled.View`
-  flex: 1;
+  /* flex: 1; */
   padding: 0 24px;
   margin-top: 122px;
 `;
@@ -102,3 +102,4 @@ export const OptionTitle = styled.Text<OptionsProps>`
   color: ${({ theme, active }) =>
     active ? theme.colors.header : theme.colors.textDetail};
 `;
+export const Section = styled.View``;
