@@ -54,6 +54,7 @@ const Input: React.FC<InputProps> = ({
         secureTextEntry={showPassword && !isVisiblePassword ? true : false}
         onFocus={handleInputFocus}
         onBlur={handleIsInputBlur}
+        autoCorrect={showPassword ? false : true}
         {...rest}
       />
 

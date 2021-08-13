@@ -91,6 +91,11 @@ const Profile: React.FC = () => {
                 keyboardType="numeric"
               />
             </Section>
+            <Section>
+              <Input icon="lock" placeholder="Senha atual" showPassword />
+              <Input icon="lock" placeholder="Nova senha" showPassword />
+              <Input icon="lock" placeholder="Repetir senha" showPassword />
+            </Section>
           </Content>
         </Container>
       </TouchableWithoutFeedback>
