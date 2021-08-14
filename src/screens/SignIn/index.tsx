@@ -52,7 +52,6 @@ const SignIn: React.FC = () => {
   };
 
   const handleNewAccount = () => {
-    console.log('passei aqui');
     navigate('SignUpFistStep');
   };
 
