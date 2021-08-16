@@ -32,7 +32,7 @@ import {
 } from './styles';
 
 const Profile: React.FC = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit');
   const [avatar, setAvatar] = useState(user.avatar);
@@ -41,8 +41,6 @@ const Profile: React.FC = () => {
 
   const theme = useTheme();
   const { goBack } = useNavigation();
-
-  const handleSignOut = () => {};
 
   const handleOptionChange = (optionSelected: 'dataEdit' | 'passwordEdit') => {
     setOption(optionSelected);
@@ -73,7 +71,7 @@ const Profile: React.FC = () => {
             <HeaderTop>
               <BackButton color={theme.colors.shape} onPress={() => goBack()} />
               <HeanderTitle>Editar Perfil</HeanderTitle>
-              <LogoutButton onPress={handleSignOut}>
+              <LogoutButton onPress={signOut}>
                 <Feather name="power" size={24} color={theme.colors.shape} />
               </LogoutButton>
             </HeaderTop>
