@@ -79,7 +79,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const updateUser = async (user: User) => {
     try {
-      const userCollection = database.get<ModelUser>('user');
+      const userCollection = database.get<ModelUser>('users');
       await database.action(async () => {
         const userSelect = await userCollection.find(user.id);
         await userSelect.update((userData) => {
