@@ -3,14 +3,16 @@ import { useNavigation } from '@react-navigation/native';
 import { StatusBar, Alert } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNetInfo } from '@react-native-community/netinfo';
+import { synchronize } from '@nozbe/watermelondb/sync';
+
+import { database } from '../../databases';
+import api from '../../services/api';
+import { CarDTO } from '../../dtos/carDTO';
 
 import Car from '../../components/Car';
 import LoadAnimation from '../../components/LoadAnimation';
 
 import Logo from '../../assets/logo.svg';
-
-import api from '../../services/api';
-import { CarDTO } from '../../dtos/carDTO';
 
 import { Container, Header, HeaderContent, TotalCars, CarList } from './styles';
 
@@ -23,6 +25,14 @@ const Home: React.FC = () => {
 
   const handleCarDetails = (car: CarDTO) => {
     navigate('CarDetails', { car });
+  };
+
+  const offlineSyncronize = async () => {
+    await synchronize({
+      database,
+      pullChanges: async ({ lastPulledAt }) => {},
+      pushChanges: async ({ changes }) => {},
+    });
   };
 
   useEffect(() => {
@@ -45,14 +55,6 @@ const Home: React.FC = () => {
       isMounted = false;
     };
   }, []);
-
-  useEffect(() => {
-    if (netInfo.isConnected) {
-      Alert.alert('Você está conectado');
-    } else {
-      Alert.alert('Você não está conectado');
-    }
-  }, [netInfo.isConnected]);
 
   return (
     <Container>
