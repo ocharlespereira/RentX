@@ -30,8 +30,18 @@ const Home: React.FC = () => {
   const offlineSyncronize = async () => {
     await synchronize({
       database,
-      pullChanges: async ({ lastPulledAt }) => {},
-      pushChanges: async ({ changes }) => {},
+      pullChanges: async ({ lastPulledAt }) => {
+        const res = await api.get(
+          `cars/sync/pull?lastPulledVersion=${lastPulledAt || 0}`
+        );
+
+        const { changes, latestVersion } = res.data;
+        return { changes, timestamp: latestVersion };
+      },
+      pushChanges: async ({ changes }) => {
+        const user = changes.users;
+        await api.post('/users/sync', user);
+      },
     });
   };
 
