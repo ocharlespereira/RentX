@@ -7,6 +7,7 @@ import { synchronize } from '@nozbe/watermelondb/sync';
 
 import { database } from '../../databases';
 import api from '../../services/api';
+import { Car as ModelCar } from '../../databases/model/Car';
 import { CarDTO } from '../../dtos/carDTO';
 
 import Car from '../../components/Car';
@@ -17,7 +18,7 @@ import Logo from '../../assets/logo.svg';
 import { Container, Header, HeaderContent, TotalCars, CarList } from './styles';
 
 const Home: React.FC = () => {
-  const [cars, setCars] = useState<CarDTO[]>([]);
+  const [cars, setCars] = useState<ModelCar[]>([]);
   const [loading, setLoading] = useState(true);
 
   const { navigate } = useNavigation();
@@ -47,20 +48,23 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     let isMounted = true;
-    api
-      .get('/cars')
-      .then((response) => {
+
+    const fetchCars = async () => {
+      try {
+        const carCollection = database.get<ModelCar>('cars');
+        const car = await carCollection.query().fetch();
+
         if (isMounted) {
-          setCars(response.data);
+          setCars(car);
         }
-      })
-      .catch((error) => console.log(error))
-      .finally(() => {
+      } finally {
         if (isMounted) {
           setLoading(false);
         }
-      });
+      }
+    };
 
+    fetchCars();
     return () => {
       isMounted = false;
     };
