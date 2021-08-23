@@ -10,7 +10,7 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useTheme } from 'styled-components';
 import { Feather } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-import * as Yup from 'Yup';
+import * as Yup from 'yup';
 
 import { useAuth } from '../../hooks/auth';
 
