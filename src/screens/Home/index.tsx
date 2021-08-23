@@ -70,6 +70,12 @@ const Home: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (netInfo.isConnected === true) {
+      offlineSyncronize();
+    }
+  }, [netInfo.isConnected]);
+
   return (
     <Container>
       <StatusBar

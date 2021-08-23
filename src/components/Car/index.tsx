@@ -3,7 +3,7 @@ import { RectButtonProps } from 'react-native-gesture-handler';
 
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 
-import { CarDTO } from '../../dtos/carDTO';
+import { Car as ModelCar } from '../../databases/model/Car';
 
 import {
   Container,
@@ -19,7 +19,7 @@ import {
 } from './styles';
 
 interface CarProps extends RectButtonProps {
-  data: CarDTO;
+  data: ModelCar;
 }
 
 const Car: React.FC<CarProps> = ({ data, ...rest }) => {
