@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatusBar, StyleSheet } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import Animated, {
   useSharedValue,
@@ -16,7 +17,10 @@ import ImageSlider from '../../components/ImageSlider';
 import Accessory from '../../components/Accessory';
 import Button from '../../components/Button';
 
+import api from '../../services/api';
+
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
+import { Car as ModelCar } from '../../databases/model/Car';
 import { CarDTO } from '../../dtos/carDTO';
 
 import {
@@ -37,13 +41,16 @@ import {
 } from './styles';
 
 interface Params {
-  car: CarDTO;
+  car: ModelCar;
 }
 
 const CarDetails: React.FC = () => {
+  const [carUpdated, setCarUpdated] = useState<CarDTO>({} as CarDTO);
+
   const navigation = useNavigation();
   const route = useRoute();
   const theme = useTheme();
+  const netInfo = useNetInfo();
 
   const { car } = route.params as Params;
 
@@ -78,6 +85,12 @@ const CarDetails: React.FC = () => {
     navigation.goBack();
   };
 
+  useEffect(() => {
+    api.get(`/cars/${car.id}`).then((response) => {
+      setCarUpdated(response.data);
+    });
+  }, [netInfo.isConnected]);
+
   return (
     <Container>
       <StatusBar
@@ -99,7 +112,13 @@ const CarDetails: React.FC = () => {
 
         <Animated.View style={sliderCarsStyleAnimation}>
           <CarImages>
-            <ImageSlider imagesUrl={car.photos} />
+            <ImageSlider
+              imagesUrl={
+                !!carUpdated.photos
+                  ? carUpdated.photos
+                  : [{ id: car.thumbnail, photo: car.thumbnail }]
+              }
+            />
           </CarImages>
         </Animated.View>
       </Animated.View>
