@@ -142,7 +142,7 @@ const CarDetails: React.FC = () => {
 
           <Rent>
             <Period>{car.period}</Period>
-            <Price>R$ {car.price}</Price>
+            <Price>R$ {netInfo.isConnected === true ? car.price : '...'}</Price>
           </Rent>
         </Details>
 
@@ -166,7 +166,11 @@ const CarDetails: React.FC = () => {
       </Animated.ScrollView>
 
       <Footer>
-        <Button title="Confirmar" onPress={handleScheduling} />
+        <Button
+          title="Confirmar"
+          onPress={handleScheduling}
+          enabled={netInfo.isConnected === true}
+        />
       </Footer>
     </Container>
   );
