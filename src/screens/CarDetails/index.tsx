@@ -86,9 +86,11 @@ const CarDetails: React.FC = () => {
   };
 
   useEffect(() => {
-    api.get(`/cars/${car.id}`).then((response) => {
-      setCarUpdated(response.data);
-    });
+    if (netInfo.isConnected === true) {
+      api.get(`/cars/${car.id}`).then((response) => {
+        setCarUpdated(response.data);
+      });
+    }
   }, [netInfo.isConnected]);
 
   return (
@@ -144,20 +146,19 @@ const CarDetails: React.FC = () => {
           </Rent>
         </Details>
 
-        <Accessories>
-          {car.accessories.map((accessory) => (
-            <Accessory
-              key={accessory.type}
-              name={accessory.name}
-              icon={getAccessoryIcon(accessory.type)}
-            />
-          ))}
-        </Accessories>
+        {carUpdated.accessories && (
+          <Accessories>
+            {carUpdated.accessories.map((accessory) => (
+              <Accessory
+                key={accessory.type}
+                name={accessory.name}
+                icon={getAccessoryIcon(accessory.type)}
+              />
+            ))}
+          </Accessories>
+        )}
 
         <About>
-          {car.about}
-          {car.about}
-          {car.about}
           {car.about}
           {car.about}
           {car.about}
