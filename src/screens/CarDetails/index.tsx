@@ -38,6 +38,7 @@ import {
   About,
   Accessories,
   Footer,
+  OfflineInfo,
 } from './styles';
 
 interface Params {
@@ -171,6 +172,12 @@ const CarDetails: React.FC = () => {
           onPress={handleScheduling}
           enabled={netInfo.isConnected === true}
         />
+
+        {netInfo.isConnected === false && (
+          <OfflineInfo>
+            Conecte-se a Internet para ver mais detalhes e agendar seu carro.
+          </OfflineInfo>
+        )}
       </Footer>
     </Container>
   );
