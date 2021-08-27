@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 interface Props {
   active: boolean;
@@ -34,7 +35,7 @@ export const CarImageWrapper = styled.View`
   align-items: center;
 `;
 
-export const CarImage = styled.Image`
+export const CarImage = styled(FastImage)`
   width: 280px;
   height: 132px;
 `;
