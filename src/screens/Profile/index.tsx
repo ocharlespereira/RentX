@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { useTheme } from 'styled-components';
 import { Feather } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
@@ -43,9 +44,17 @@ const Profile: React.FC = () => {
   const [driverLicense, setDriverLicense] = useState(user.driver_license);
 
   const theme = useTheme();
+  const netInfo = useNetInfo();
   const { goBack } = useNavigation();
 
   const handleOptionChange = (optionSelected: 'dataEdit' | 'passwordEdit') => {
+    if (netInfo.isConnected === false && optionSelected === 'passwordEdit') {
+      Alert.alert(
+        'Você está Offline',
+        'Para mudar a senha conecte-se a Internet.'
+      );
+      return;
+    }
     setOption(optionSelected);
   };
 
