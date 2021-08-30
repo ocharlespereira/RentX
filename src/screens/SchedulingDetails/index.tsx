@@ -4,6 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNetInfo } from '@react-native-community/netinfo';
 import { format } from 'date-fns';
 
 import BackButton from '../../components/BackButton';
@@ -55,16 +56,18 @@ interface RentalPeriodProps {
 
 const SchedulingDetails: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const [carUpdated, setCarUpdated] = useState<CarDTO>({} as CarDTO);
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriodProps>(
     {} as RentalPeriodProps
   );
 
   const theme = useTheme();
-  const { navigate, goBack } = useNavigation();
   const route = useRoute();
+  const netInfo = useNetInfo();
+  const { navigate, goBack } = useNavigation();
   const { car, dates } = route.params as Params;
 
-  const rentalTotal = Number(dates.length * car.rent.price);
+  const rentalTotal = Number(dates.length * car.price);
 
   const handleScheduling = () => {
     navigate('Scheduling', { car });
@@ -118,6 +121,14 @@ const SchedulingDetails: React.FC = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (netInfo.isConnected === true) {
+      api.get(`/cars/${car.id}`).then((response) => {
+        setCarUpdated(response.data);
+      });
+    }
+  }, [netInfo.isConnected]);
+
   return (
     <Container>
       <Header>
@@ -136,20 +147,22 @@ const SchedulingDetails: React.FC = () => {
           </Description>
 
           <Rent>
-            <Period>{car.rent.period}</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Period>{car.period}</Period>
+            <Price>R$ {car.price}</Price>
           </Rent>
         </Details>
 
-        <Accessories>
-          {car.accessories.map((accessory) => (
-            <Accessory
-              key={accessory.type}
-              name={accessory.name}
-              icon={getAccessoryIcon(accessory.type)}
-            />
-          ))}
-        </Accessories>
+        {carUpdated.accessories && (
+          <Accessories>
+            {carUpdated.accessories.map((accessory) => (
+              <Accessory
+                key={accessory.type}
+                name={accessory.name}
+                icon={getAccessoryIcon(accessory.type)}
+              />
+            ))}
+          </Accessories>
+        )}
 
         <RentalPeriod>
           <CalendarIcon>
@@ -180,7 +193,7 @@ const SchedulingDetails: React.FC = () => {
         <RentalPrice>
           <RentalPriceLabel>TOTAL</RentalPriceLabel>
           <RentalPriceDetail>
-            <RentalPriceQuota>{`R$ ${car.rent.price} x ${dates.length} diárias`}</RentalPriceQuota>
+            <RentalPriceQuota>{`R$ ${car.price} x ${dates.length} diárias`}</RentalPriceQuota>
             <RentalPricetotal>R$ {rentalTotal}</RentalPricetotal>
           </RentalPriceDetail>
         </RentalPrice>
