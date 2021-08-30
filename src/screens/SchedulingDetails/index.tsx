@@ -136,7 +136,13 @@ const SchedulingDetails: React.FC = () => {
       </Header>
 
       <CarImages>
-        <ImageSlider imagesUrl={car.photos} />
+        <ImageSlider
+          imagesUrl={
+            !!carUpdated.photos
+              ? carUpdated.photos
+              : [{ id: car.thumbnail, photo: car.thumbnail }]
+          }
+        />
       </CarImages>
 
       <Content>
