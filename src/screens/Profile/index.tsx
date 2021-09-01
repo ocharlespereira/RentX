@@ -95,13 +95,13 @@ const Profile: React.FC = () => {
         token: user.token,
       });
 
-      Alert.alert('Perfil atualizado!');
+      Alert.alert('Perfil atualizado.', 'Atualizado com sucesso!');
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         Alert.alert('Opa!', error.message);
         return;
       }
-      Alert.alert('Não foi possível atualizar o perfil');
+      Alert.alert('Erro na edição.', 'Não foi possível atualizar o perfil');
     }
   };
 

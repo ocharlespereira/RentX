@@ -84,9 +84,9 @@ const AuthProvider: React.FC = ({ children }) => {
       await database.action(async () => {
         const userSelect = await userCollection.find(user.id);
         await userSelect.update((userData) => {
-          userData.name = user.name;
-          userData.driver_license = user.driver_license;
-          userData.avatar = user.avatar;
+          (userData.name = user.name),
+            (userData.driver_license = user.driver_license),
+            (userData.avatar = user.avatar);
         });
       });
 
