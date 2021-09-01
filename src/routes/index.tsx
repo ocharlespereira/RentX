@@ -10,9 +10,7 @@ import LoadAnimation from '../components/LoadAnimation';
 const routes: React.FC = () => {
   const { user, loading } = useAuth();
 
-  return loading ? (
-    <LoadAnimation />
-  ) : (
+  return (
     <NavigationContainer>
       {user.id ? <AppTabRoutes /> : <AuthRoutes />}
     </NavigationContainer>

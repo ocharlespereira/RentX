@@ -75,24 +75,14 @@ const SchedulingDetails: React.FC = () => {
 
   const handleSchedulingComplete = async () => {
     setLoading(true);
-    const res = await api.get(`/schedules_bycars/${car.id}`);
 
-    const unavaibleDates = [...res.data.unavailable_dates, ...dates];
-
-    await api.post('schedules_bycars', {
-      user_id: 2,
-      car,
-      startDate: format(getPlatformDate(new Date(dates[0])), 'dd/MM/yyyy'),
-      endDate: format(
-        getPlatformDate(new Date(dates[dates.length - 1])),
-        'dd/MM/yyyy'
-      ),
-    });
-
-    api
-      .put(`/schedules_bycars/${car.id}`, {
-        id: car.id,
-        unavailable_dates: unavaibleDates,
+    await api
+      .post('rentals', {
+        user_id: 1,
+        car_id: car.id,
+        startDate: new Date(dates[0]),
+        endDate: new Date(dates[dates.length - 1]),
+        total: rentalTotal,
       })
       .then(() => {
         navigate('Confirmation', {

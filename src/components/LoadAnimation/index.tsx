@@ -10,7 +10,7 @@ const LoadAnimation: React.FC = () => {
     <Container>
       <LottieView
         source={loadCar}
-        style={{ height: 200 }}
+        style={{ width: '100%', height: 200 }}
         resizeMode="center"
         autoPlay
         loop

@@ -41,7 +41,6 @@ const AuthProvider: React.FC = ({ children }) => {
       });
 
       const { token, user } = response.data;
-
       api.defaults.headers.authorization = `Bearer ${token}`;
 
       //salvar database local
@@ -102,7 +101,7 @@ const AuthProvider: React.FC = ({ children }) => {
       const userCollection = database.get<ModelUser>('users');
       const response = await userCollection.query().fetch();
 
-      //captura user do watermelon
+      // captura user do watermelon
       if (response.length > 0) {
         const userData = response[0]._raw as unknown as User;
 
