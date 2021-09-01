@@ -37,13 +37,13 @@ const Home: React.FC = () => {
         );
 
         const { changes, latestVersion } = response.data;
-        console.log('lastPulledAt', lastPulledAt);
-        console.log(
-          'response',
-          { changes, timestamp: latestVersion },
-          'response2',
-          response
-        );
+        // console.log('lastPulledAt', lastPulledAt);
+        // console.log(
+        //   'response',
+        //   { changes, timestamp: latestVersion },
+        //   'response2',
+        //   response
+        // );
         return { changes, timestamp: latestVersion };
       },
       pushChanges: async ({ changes }) => {
