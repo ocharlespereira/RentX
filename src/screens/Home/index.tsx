@@ -32,17 +32,26 @@ const Home: React.FC = () => {
     await synchronize({
       database,
       pullChanges: async ({ lastPulledAt }) => {
-        const res = await api.get(
+        const response = await api.get(
           `cars/sync/pull?lastPulledVersion=${lastPulledAt || 0}`
         );
 
-        const { changes, latestVersion } = res.data;
+        const { changes, latestVersion } = response.data;
+        console.log('lastPulledAt', lastPulledAt);
+        console.log(
+          'response',
+          { changes, timestamp: latestVersion },
+          'response2',
+          response
+        );
         return { changes, timestamp: latestVersion };
       },
       pushChanges: async ({ changes }) => {
         const user = changes.users;
+        console.log('UUUUUUUUUUUUUUUUUU', user);
         await api.post('/users/sync', user);
       },
+      // migrationsEnabledAtVersion: 1,
     });
   };
 
@@ -52,10 +61,12 @@ const Home: React.FC = () => {
     const fetchCars = async () => {
       try {
         const carCollection = database.get<ModelCar>('cars');
-        const car = await carCollection.query().fetch();
+        const cars = await carCollection.query().fetch();
+
+        console.log('CARRRRRRS', cars);
 
         if (isMounted) {
-          setCars(car);
+          setCars(cars);
         }
       } finally {
         if (isMounted) {

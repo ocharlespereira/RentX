@@ -28,7 +28,7 @@ const carSchema = tableSchema({
       type: 'number',
     },
     {
-      name: 'tambnail',
+      name: 'thumbnail',
       type: 'string',
     },
   ],
