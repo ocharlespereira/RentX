@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import { AntDesign } from '@expo/vector-icons';
 import { format, parseISO } from 'date-fns';
@@ -41,8 +41,9 @@ const MyCars: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   const { goBack } = useNavigation();
-  const theme = useTheme();
 
+  const theme = useTheme();
+  const screenIsFocus = useIsFocused();
   const handleBack = () => {
     goBack();
   };
@@ -61,7 +62,7 @@ const MyCars: React.FC = () => {
       })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
-  }, []);
+  }, [screenIsFocus]);
 
   return (
     <Container>
