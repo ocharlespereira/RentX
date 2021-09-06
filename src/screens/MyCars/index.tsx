@@ -3,6 +3,7 @@ import { StatusBar, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import { AntDesign } from '@expo/vector-icons';
+import { format, parseISO } from 'date-fns';
 
 import BackButton from '../../components/BackButton';
 import Car from '../../components/Car';
@@ -44,7 +45,7 @@ interface DataProps {
 }
 
 const MyCars: React.FC = () => {
-  const [cars, setCars] = useState<CarProps[]>([]);
+  const [cars, setCars] = useState<DataProps[]>([]);
   const [loading, setLoading] = useState(true);
 
   const { goBack } = useNavigation();
@@ -57,7 +58,14 @@ const MyCars: React.FC = () => {
   useEffect(() => {
     api
       .get('/rentals')
-      .then((res) => setCars(res.data))
+      .then((res) => {
+        const dataFormatted = res.data.map((data: DataProps) => ({
+          car: data.car,
+          start_date: format(parseISO(data.start_date), 'dd/MM/yyyy'),
+          end_date: format(parseISO(data.end_date), 'dd/MM/yyyy'),
+        }));
+        setCars(dataFormatted);
+      })
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
   }, []);
@@ -102,14 +110,14 @@ const MyCars: React.FC = () => {
                 <CarFooter>
                   <CarFooterTitle>Período</CarFooterTitle>
                   <CarFooterPeriod>
-                    <CarFooterDate>{item.startDate}</CarFooterDate>
+                    <CarFooterDate>{item.start_date}</CarFooterDate>
                     <AntDesign
                       name="arrowright"
                       size={20}
                       color={theme.colors.title}
                       style={{ marginHorizontal: 10 }}
                     />
-                    <CarFooterDate>{item.endDate}</CarFooterDate>
+                    <CarFooterDate>{item.end_date}</CarFooterDate>
                   </CarFooterPeriod>
                 </CarFooter>
               </CarWrapper>
