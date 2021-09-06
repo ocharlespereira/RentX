@@ -10,6 +10,7 @@ import LoadAnimation from '../../components/LoadAnimation';
 
 import api from '../../services/api';
 import { CarDTO } from '../../dtos/carDTO';
+import { Car as ModelCar } from '../../databases/model/Car';
 
 import {
   Container,
@@ -35,6 +36,13 @@ interface CarProps {
   endDate: string;
 }
 
+interface DataProps {
+  id: string;
+  car: ModelCar;
+  start_date: string;
+  end_date: string;
+}
+
 const MyCars: React.FC = () => {
   const [cars, setCars] = useState<CarProps[]>([]);
   const [loading, setLoading] = useState(true);
@@ -48,7 +56,7 @@ const MyCars: React.FC = () => {
 
   useEffect(() => {
     api
-      .get('/schedules_byuser/?user_id=1')
+      .get('/rentals')
       .then((res) => setCars(res.data))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
