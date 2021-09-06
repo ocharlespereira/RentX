@@ -29,14 +29,6 @@ import {
   CarFooterDate,
 } from './styles';
 
-interface CarProps {
-  id: string;
-  user_id: string;
-  car: CarDTO;
-  startDate: string;
-  endDate: string;
-}
-
 interface DataProps {
   id: string;
   car: ModelCar;
@@ -60,6 +52,7 @@ const MyCars: React.FC = () => {
       .get('/rentals')
       .then((res) => {
         const dataFormatted = res.data.map((data: DataProps) => ({
+          id: data.id,
           car: data.car,
           start_date: format(parseISO(data.start_date), 'dd/MM/yyyy'),
           end_date: format(parseISO(data.end_date), 'dd/MM/yyyy'),
